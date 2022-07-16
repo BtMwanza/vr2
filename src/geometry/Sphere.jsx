@@ -8,10 +8,14 @@ function Sphere(props) {
   // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
+
   // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => {
+  useFrame(({ clock }) => {
     if (!props.sun) {
-      (ref.current.rotation.x += 0.001), (ref.current.rotation.y += 0.001);
+      const elapsed = clock.getElapsedTime();
+      ref.current.rotation.x += 0.001;
+      ref.current.rotation.y += 0.001;
+      ref.current.position.set(Math.sin(elapsed) * props.x, 0, Math.cos(elapsed) * props.x);
     }
   });
   // Return the view, these are regular Threejs elements expressed in JSX
