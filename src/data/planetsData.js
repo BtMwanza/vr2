@@ -22,6 +22,13 @@ const shuffle = (a) => {
   return temp;
 };
 
+// function returns the Fibonacci number
+function fib(n) {
+  if (n <= 1)
+      return n;
+  return fib(n-1) + fib(n-2);
+}
+
 const textures = [
   mercury_texture,
   venus_texture,
